@@ -1,6 +1,6 @@
 # PlanPilot
 
-Multi-agent event planner built with LangGraph, FastAPI and Claude.
+Multi-agent event planner built with LangGraph, FastAPI and Google Gemini.
 
 ```
 request -> supervisor (guardrail + routing)
@@ -20,6 +20,6 @@ uvicorn app.main:app --reload
 Open http://127.0.0.1:8000. Run tests with `python -m pytest -q` (no keys needed).
 
 ## Keys
-- `ANTHROPIC_API_KEY` (required)
+- `GEMINI_API_KEY` (required)
 - `TAVILY_API_KEY` (optional; without it venue/vendor agents skip live search)
 - Weather uses Open-Meteo and needs no key.
