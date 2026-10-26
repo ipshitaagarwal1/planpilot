@@ -4,7 +4,7 @@ A multi-agent event planner. User describes an event -> supervisor validates and
 specialist agents run in parallel -> schedule + draft -> **human approval (interrupt)** -> final plan.
 
 ## Stack
-Python 3.11+, FastAPI, LangGraph (+ SQLite checkpointer), langchain-anthropic, Tavily (search),
+Python 3.11+, FastAPI, LangGraph (+ SQLite checkpointer), langchain-google-genai (Gemini, key in `GEMINI_API_KEY`), Tavily (search),
 Open-Meteo (weather, no key). Frontend is one static HTML file (`static/index.html`).
 
 ## Layout

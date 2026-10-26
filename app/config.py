@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MODEL = os.getenv("PlanPilot_MODEL", "claude-sonnet-5-5")
+MODEL = os.getenv("PlanPilot_MODEL", "gemini-2.5-flash-lite")
 DB_PATH = os.getenv("PlanPilot_DB", "PlanPilot.db")
 
 
