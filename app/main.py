@@ -12,6 +12,7 @@ from pydantic import BaseModel
 from .config import DB_PATH
 from .graph import build_graph
 
+SECTIONS = ["venues", "vendors", "weather", "budget", "schedule", "marketing"]
 STATIC = Path(__file__).resolve().parent.parent / "static"
 
 conn = sqlite3.connect(DB_PATH, check_same_thread=False)
@@ -39,7 +40,8 @@ def _response(thread_id: str) -> dict:
     v = snap.values
     if snap.next:  # paused at human_approval
         return {"thread_id": thread_id, "status": "needs_review", "draft": v.get("draft", ""),
-                "revisions": v.get("revisions", 0)}
+                "revisions": v.get("revisions", 0),
+                "sections": {k: v.get(k, "") for k in SECTIONS}}
     if v.get("blocked_reason"):
         return {"thread_id": thread_id, "status": "blocked", "answer": v.get("final", "")}
     return {"thread_id": thread_id, "status": "done", "answer": v.get("final", "")}
@@ -74,3 +76,8 @@ app.mount("/static", StaticFiles(directory=STATIC), name="static")
 @app.get("/")
 def index():
     return FileResponse(STATIC / "index.html")
+
+
+@app.get("/login")
+def login_page():
+    return FileResponse(STATIC / "login.html")
